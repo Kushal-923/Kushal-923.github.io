@@ -94,7 +94,8 @@
         </p>
 
         <p>Cryptography is usually split into its two primary workflows <strong>Symmetric</strong> and
-            <strong>Asymmetric</strong></p>
+            <strong>Asymmetric</strong>
+        </p>
 
         <p>Symmetric encryption uses a single, shared private key to both lock and unlock data. It’s
             incredibly lightweight and fast, but it suffers from a massive roadblock known as the <strong>key
@@ -117,7 +118,7 @@
 
         <hr style="border: 0; border-top: 1px dashed #30363d; margin: 30px 0;">
 
-        <h4>Troubleshooting OpenSSL</h4>
+        <h3>Troubleshooting OpenSSL</h3>
         <p>I ran straight into a classic <code>bad magic number</code> error. Because I accidentally inverted
             my input flags, I fed a plaintext file into a decryption command. OpenSSL checked the very
             beginning of the file for its mandatory file signature bytes (<code>Salted__</code>), failed to find them,
@@ -135,6 +136,9 @@
 
         <img src="gpg_lab.png" alt="GPG Key Generation Lab Screenshot" class="lab-img">
 
+        <hr style="border: 0; border-top: 1px dashed #30363d; margin: 30px 0;">
+
+        <h3>Hashing using SHA-256</h3>
         <p>Finally, I experimented with Hashing using <strong>SHA-256</strong>. Unlike encryption, hashing is a strictly
             one-way, deterministic process that acts as a digital fingerprint for data integrity. I even simulated a
             tampering attack and due to the <strong>avalanche effect</strong> of Hashing, the string changed entirely.

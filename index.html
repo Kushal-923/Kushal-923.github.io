@@ -7,7 +7,7 @@
     <title>Kushal | Cybersecurity Logs</title>
     <style>
         body {
-            background-color: #0d1117;
+            background-color: #061613;
             color: #c9d1d9;
             font-family: 'Courier New', Courier, monospace;
             line-height: 1.6;
@@ -78,72 +78,67 @@
     </header>
 
     <div class="post">
-        <h2>Day 1: Breaking Things to Secure Them (My Cryptography Lab)</h2>
-        <p><span class="tag">Lab Log</span> <span class="tag">Cryptography</span></p>
+        <h2>Day 1: Started Journey with an Error</h2>
+        <p><span class="tag">Day_1</span> <span class="tag">Cryptography</span></p>
 
-        <p>Day one of any cybersecurity journey is usually spent fighting installation wizards[cite: 619]. For me, that
-            meant setting up Oracle’s VirtualBox and booting up a pre-built Kali Linux image[cite: 620]. I quickly
-            learned that Kali is a rolling-release operating system, meaning it constantly updates its packages to
-            ensure its heavy-hitting security tools never suffer from a lack of optimization[cite: 621].</p>
+        <p>Day one of any cybersecurity journey is usually spent fighting installation wizards. For me, that
+            meant setting up <u>Oracle’s VirtualBox</u> and booting up a pre-built <u>Kali Linux</u> image. One
+            interesting <em>"Did you know?"</em> fact I learned is that Kali is a rolling-release operating system,
+            meaning it constantly updates its packages to
+            ensure its heavy-hitting security tools never suffer from a lack of optimization.</p>
 
         <p>Once my sandbox environment was rock-solid, I dove straight into the core of security:
-            <strong>Cryptography</strong>—the art of transforming plain, readable text into scrambled, unreadable
-            ciphertext[cite: 622]. The ultimate goal here is simple: protecting confidentiality and proving
-            authenticity[cite: 623].
+            <strong>Cryptography</strong>- the art of transforming plain, readable text into scrambled, unreadable
+            ciphertext. The ultimate goal here is simple, protecting confidentiality and proving
+            authenticity.
         </p>
 
-        <p>Things got real when I began splitting cryptography into its two primary workflows: Symmetric and
-            Asymmetric[cite: 624].</p>
+        <p>Cryptography is usually split into its two primary workflows <strong>Symmetric</strong> and
+            <strong>Asymmetric</strong></p>
 
-        <h3>1. The Key Dilemma: Symmetric vs. Asymmetric</h3>
-        <p>Symmetric encryption uses a single, shared private key to both lock and unlock data[cite: 625]. It’s
-            incredibly lightweight and fast, but it suffers from a massive roadblock known as the <em>key distribution
-                problem</em>[cite: 626]. If you have to share that secret key over a public network to let someone
-            decrypt your message, you run an immense risk of interception[cite: 627].</p>
+        <p>Symmetric encryption uses a single, shared private key to both lock and unlock data. It’s
+            incredibly lightweight and fast, but it suffers from a massive roadblock known as the <strong>key
+                distribution
+                problem</strong>. If you have to share that secret key over a public network to let someone
+            decrypt your message, you run an immense risk of interception.</p>
 
         <p>Asymmetric encryption completely solves this by deploying a mathematically linked key pair: a <strong>Public
                 Key</strong> (which you give to the world to encrypt data) and a <strong>Private Key</strong> (which
-            only you keep secret to decrypt it)[cite: 628].</p>
+            only you keep secret to decrypt it).</p>
 
-        <p>To test this, I used OpenSSL (a built-in Linux crypto library) to play with AES-256 encryption[cite: 629]. It
+        <p>To test this, I used OpenSSL (a built-in Linux crypto library) to play with <strong>AES-256</strong>
+            encryption. It
             breaks data into 128-bit blocks and scrambles them using a key length that yields 2<sup>256</sup> total
-            combinations[cite: 630]. To put that absolute unit of a wall into perspective: if all the supercomputers on
+            combinations. To put that absolute unit of a wall into perspective: if all the supercomputers on
             Earth worked simultaneously, it would still take over <strong>3 &times; 10<sup>51</sup> years</strong>
-            (millions of billions of trillions of years) to guess the right key via brute force[cite: 631].</p>
+            (millions of billions of trillions of years) to guess the right key via brute force.</p>
 
-        <p>Yet, I still managed to break it on my first try... sort of[cite: 632].</p>
+        <p>Yet, I still managed to break it on my first try... sort of.</p>
 
         <hr style="border: 0; border-top: 1px dashed #30363d; margin: 30px 0;">
 
-        <h4>Checkpoint: Troubleshooting OpenSSL</h4>
-        <p>I ran straight into a classic <code>bad magic number</code> error[cite: 633]. Because I accidentally inverted
-            my input flags, I fed a plaintext file into a decryption command[cite: 634]. OpenSSL checked the very
+        <h4>Troubleshooting OpenSSL</h4>
+        <p>I ran straight into a classic <code>bad magic number</code> error. Because I accidentally inverted
+            my input flags, I fed a plaintext file into a decryption command. OpenSSL checked the very
             beginning of the file for its mandatory file signature bytes (<code>Salted__</code>), failed to find them,
-            and stopped immediately[cite: 635]. Once I corrected the file flags, my message decrypted flawlessly[cite:
-            636].</p>
+            and stopped immediately. Once I corrected the file flags, my message decrypted flawlessly.</p>
 
         <img src="openssl_lab.png" alt="OpenSSL Troubleshooting Lab Screenshot" class="lab-img">
 
         <hr style="border: 0; border-top: 1px dashed #30363d; margin: 30px 0;">
 
-        <h3>2. GPG Keys & One-Way Hashes</h3>
-        <p>Next, I moved on to GPG (GNU Privacy Guard) to set up an asymmetric identity[cite: 637]. I generated my key
-            pair using modern Elliptic Curve Cryptography (<code>cv25519</code>), exported my public key, and simulated
-            a recipient-only data transfer[cite: 638].</p>
+        <h3>GPG Keys & One-Way Hashes</h3>
+        <p>Next, I moved on to GPG (GNU Privacy Guard) to set up an asymmetric identity. I generated my key
+            pair using modern <strong>Elliptic Curve Cryptography(cv25519)</strong>, exported my public key, and
+            simulated
+            a recipient-only data transfer.</p>
 
         <img src="gpg_lab.png" alt="GPG Key Generation Lab Screenshot" class="lab-img">
 
-        <p>Finally, I experimented with Hashing using SHA-256[cite: 639]. Unlike encryption, hashing is a strictly
-            one-way, deterministic process that acts as a digital fingerprint for data integrity[cite: 640]. I even
-            simulated a tampering attack by modifying just a single character in my text file[cite: 641]. Thanks to the
-            <em>avalanche effect</em>, the final 64-character hexadecimal string transformed entirely—proving how easy
-            it is to catch a malicious actor altering data[cite: 642].
+        <p>Finally, I experimented with Hashing using <strong>SHA-256</strong>. Unlike encryption, hashing is a strictly
+            one-way, deterministic process that acts as a digital fingerprint for data integrity. I even simulated a
+            tampering attack and due to the <strong>avalanche effect</strong> of Hashing, the string changed entirely.
         </p>
-
-        <h4>Checkpoint: Digital Signature Verification</h4>
-        <p>I wrapped up the lab by using my private key to clear-sign a document, establishing non-repudiation and
-            proving that the document explicitly came from me[cite: 643]. First lab is officially in the books, and my
-            engineering blog is live on GitHub Pages[cite: 644]!</p>
 
         <img src="signature_lab.png" alt="GPG Digital Signature Verification Screenshot" class="lab-img">
     </div>

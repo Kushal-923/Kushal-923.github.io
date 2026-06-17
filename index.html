@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kushal | Cybersecurity Logs</title>
+    <style>
+        body {
+            background-color: #0d1117;
+            color: #c9d1d9;
+            font-family: 'Courier New', Courier, monospace;
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            border-bottom: 2px solid #238636;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #238636;
+        }
+
+        h2 {
+            color: #58a6ff;
+            border-bottom: 1px solid #30363d;
+            padding-bottom: 5px;
+        }
+
+        .post {
+            background: #161b22;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #30363d;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: #21262d;
+            color: #8b949e;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.8em;
+        }
+
+        code {
+            background-color: #111;
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #ff7b72;
+        }
+
+        pre {
+            background-color: #050505;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            border: 1px solid #21262d;
+            color: #39ff14;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>~/cybersecurity_journey</h1>
+        <p>Hands-on documentation of security engineering concepts and lab deployments.</p>
+    </header>
+
+    <div class="post">
+        <h2>Level 1, Module 1: Cryptography Foundations & Lab Setup</h2>
+        <p><span class="tag">Lab Log</span> <span class="tag">Cryptography</span></p>
+
+        <h3>1. Sandbox Environment & Hygiene</h3>
+        <p>Deployed a Type-2 hypervisor to host an isolated <strong>Kali Linux</strong> virtual machine. Configured a
+            NAT network adapter to maintain internet connectivity for dependency installation while restricting inbound
+            lateral traffic to the host operating system.</p>
+        <p>Hardened default machine configurations by immediately rotating default root credentials via
+            <code>passwd</code> and synchronizing rolling-release package distributions using
+            <code>sudo apt full-upgrade</code>.</p>
+
+        <h3>2. Symmetric Cryptography (AES-256)</h3>
+        <p>Utilized OpenSSL to perform symmetric data-at-rest encryption. Evaluated the role of key stretching with
+            <code>-pbkdf2</code> and 100,000 hashing iterations (<code>-iter 100000</code>) to defend against
+            hardware-accelerated brute-force calculations.</p>
+        <p><strong>Troubleshooting Checkpoint:</strong> Diagnosed and fixed a <code>bad magic number</code> error caused
+            by an inverted input flag. Analyzed how OpenSSL evaluates critical file signatures (checking for header
+            bytes like <code>Salted__</code>) to classify encrypted vs. cleartext file structures.</p>
+
+        <h3>3. Asymmetric Cryptography (GPG & ECC)</h3>
+        <p>Generated asymmetric key pairs via GNU Privacy Guard (GPG), utilizing modern Elliptic Curve Cryptography via
+            the <code>cv25519</code> curve. Successfully orchestrated public-key distribution simulations to enforce
+            strict recipient-only data decryption boundaries.</p>
+
+        <h3>4. Integrity & Digital Signatures</h3>
+        <p>Executed SHA-256 calculations to establish cryptographic digital fingerprints. Demonstrated the
+            <strong>Avalanche Effect</strong> by shifting a single character string and observing a completely
+            non-linear transformation of the output hash string.</p>
+        <p>Wrapped up the session by deploying clear-signed documents (<code>--clearsign</code>) to ensure data
+            authenticity and cryptographically enforce non-repudiation metrics within communication channels.</p>
+    </div>
+
+</body>
+
+</html>
